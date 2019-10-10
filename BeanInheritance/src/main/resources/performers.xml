@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd ">
+<bean id="guitar" class="com.zensar.Spring.instruments.Guitar"></bean>
+<bean id="sanjay" class="com.zensar.Spring.performers.Instrumentalist">
+<property name="instrument" ref="guitar"></property>
+<property name="song" value="Give me some shine"></property>
+</bean>
+
+<bean id="violin" class="com.zensar.Spring.instruments.Violin"></bean>
+<bean id="ramesh" parent="sanjay">
+<property name="song" value="Aal Izz well"></property>
+</bean>
+
+<bean id="anu" parent="ramesh">
+<property name="instrument" ref="violin"></property>
+</bean>
+</beans>
