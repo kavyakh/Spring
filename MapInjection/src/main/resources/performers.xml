@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd ">
+<bean id="guitar" class="com.zensar.Spring.instruments.Guitar"></bean>
+<bean id="violin" class="com.zensar.Spring.instruments.Violin"></bean>
+<bean id="veena" class="com.zensar.Spring.instruments.Veena"></bean>
+<bean id="sanjay" class="com.zensar.Spring.performers.Instrumentalist">
+<property name="instrumentSongMap">
+<map>
+<entry key-ref="guitar" value="All Izz well"></entry>
+<entry key-ref="violin" value="Tharae zammen para"></entry>
+<entry key-ref="veena" value="Akash dha achae"></entry>
+</map>
+</property>
+</bean>
+</beans>
