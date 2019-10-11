@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -54,24 +53,51 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public Product getById(int productId) {
 		// TODO Auto-generated method stub
-		return null;
+		String sql = "select * from product where id=?";
+		return jdbcTemplate.query(sql, new Object[]{productId},new ResultSetExtractor<Product>() {
+
+			@Override
+			public Product extractData(ResultSet rs) throws SQLException, DataAccessException {
+				// TODO Auto-generated method stub
+				if(rs.next()) {
+					Product product = new Product();
+					product.setProductId(rs.getInt(1));
+					product.setName(rs.getString(2));
+					product.setBrand(rs.getString(3));
+					product.setPrice(rs.getFloat(4));
+					return product;
+					
+				}else {
+				return null;
+			}
+				}
+		});
 	}
 
 	@Override
 	public void update(Product product) {
 		// TODO Auto-generated method stub
+		String sql = "update product set name=?,brand=?,price=? where id=?"; 
+		jdbcTemplate.update(sql,  product.getName(),product.getBrand(),product.getPrice(),product.getProductId());
+		System.out.println("product is Updated");
 		
 	}
 
 	@Override
 	public void insert(Product product) {
 		// TODO Auto-generated method stub
+		String sql = "Insert into product value(?,?,?,?)";
+		jdbcTemplate.update(sql, product.getProductId(), product.getName(),product.getBrand(),product.getPrice());
+		System.out.println("New product is Inserted");
 		
 	}
 
 	@Override
 	public void delete(Product product) {
 		// TODO Auto-generated method stub
+		String sql = "Delete from product where id=?";
+		jdbcTemplate.update(sql, product.getProductId());
+		System.out.println("product is deleted");
 		
 	}
 	
