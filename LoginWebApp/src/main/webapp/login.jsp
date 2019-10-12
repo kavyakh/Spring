@@ -10,7 +10,7 @@
 
 <form action="login">
 <input type="text" name="username" placeholder="Enter username"><br>
-<input type="text"  name="password" placeholder="Enter password"><br>
+<input type="text" name="password" placeholder="Enter password"><br>
 <input type="submit" value="submit">
 </form>
 </body>
